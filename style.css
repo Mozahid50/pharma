@@ -4579,3 +4579,256 @@ video {
     }
 
 }
+
+/* ==========================================
+   MOBILE - ULTRA COMPACT 4 COLUMN DASHBOARD
+   ========================================== */
+
+@media screen and (max-width: 600px) {
+
+    /* Four cards in every row */
+    .combined-metrics-grid,
+    .dashboard-metrics.alert-metrics {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+    }
+
+    /* Compact card size */
+    .combined-metric,
+    .alert-card {
+        min-width: 0 !important;
+        min-height: 105px !important;
+        padding: 8px 4px !important;
+        border-radius: 9px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    /* Small icons */
+    .combined-metric-icon,
+    .alert-icon-box {
+        width: 25px !important;
+        height: 25px !important;
+        min-width: 25px !important;
+        font-size: 11px !important;
+        margin: 0 auto 5px !important;
+    }
+
+    /* Card information */
+    .combined-metric-info,
+    .alert-card-info {
+        width: 100%;
+        min-width: 0;
+        text-align: center;
+    }
+
+    .combined-metric-info span,
+    .alert-category {
+        font-size: 8px !important;
+        line-height: 1.2 !important;
+        display: block;
+        overflow-wrap: anywhere;
+    }
+
+    .combined-metric-info h3,
+    .alert-card-info h3 {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+        margin: 4px 0 !important;
+        overflow-wrap: anywhere;
+    }
+
+    .combined-metric-info p,
+    .alert-card-info p {
+        display: none !important;
+    }
+
+    /* Alert card top */
+    .alert-card-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        width: 100%;
+    }
+
+    .alert-status {
+        font-size: 7px !important;
+        padding: 2px 4px !important;
+    }
+
+    /* View Details compact */
+    .view-details-btn {
+        font-size: 8px !important;
+        padding: 3px 0 !important;
+        margin-top: 4px !important;
+    }
+
+    .view-details-btn i {
+        font-size: 7px;
+    }
+
+    /* Dashboard headings */
+    .combined-dashboard-heading,
+    .smart-alerts-heading {
+        margin-bottom: 12px !important;
+    }
+
+    .combined-dashboard-heading h3,
+    .smart-alerts-heading h3 {
+        font-size: 17px !important;
+    }
+
+    .combined-dashboard-heading p,
+    .smart-alerts-heading p {
+        font-size: 10px !important;
+    }
+
+    /* Reduce dashboard spacing */
+    .combined-card-content {
+        padding: 10px !important;
+    }
+
+    .combined-section-heading {
+        gap: 7px !important;
+        margin-bottom: 9px !important;
+    }
+
+    .combined-section-heading h4 {
+        font-size: 12px !important;
+    }
+
+    .combined-section-heading p {
+        font-size: 9px !important;
+    }
+
+    .combined-section-icon {
+        width: 27px !important;
+        height: 27px !important;
+        font-size: 12px !important;
+    }
+
+    .combined-section-divider {
+        margin: 12px 0 !important;
+    }
+
+    .combined-dashboard-group,
+    .smart-alerts-group {
+        width: calc(100% - 20px) !important;
+    }
+
+    .dashboard-updated {
+        font-size: 10px !important;
+    }
+}
+
+/* Very small screens */
+@media screen and (max-width: 360px) {
+
+    .combined-metrics-grid,
+    .dashboard-metrics.alert-metrics {
+        gap: 4px !important;
+    }
+
+    .combined-metric,
+    .alert-card {
+        min-height: 95px !important;
+        padding: 5px 2px !important;
+    }
+
+    .combined-metric-info span,
+    .alert-category {
+        font-size: 7px !important;
+    }
+
+    .combined-metric-info h3,
+    .alert-card-info h3 {
+        font-size: 11px !important;
+    }
+
+    .view-details-btn {
+        font-size: 7px !important;
+    }
+}
+
+/* ==========================================
+   MOBILE HERO & BUTTON COMPACT DESIGN
+   ========================================== */
+
+@media screen and (max-width: 600px) {
+
+    /* Reduce Hero Section Height */
+    .hero {
+        min-height: auto !important;
+        height: auto !important;
+        padding: 40px 0 35px !important;
+    }
+
+    .hero-content {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Smaller Hero Heading */
+    .hero h1 {
+        font-size: 27px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Smaller Description */
+    .hero p {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 17px !important;
+    }
+
+    /* Compact Buttons */
+    .hero-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    .hero-actions .btn {
+        width: auto !important;
+        min-width: 0 !important;
+        padding: 9px 13px !important;
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+        border-radius: 7px !important;
+        gap: 6px !important;
+    }
+
+    .hero-actions .btn i {
+        font-size: 10px !important;
+    }
+}
+
+/* Extra Small Mobile */
+@media screen and (max-width: 360px) {
+
+    .hero {
+        padding: 30px 0 28px !important;
+    }
+
+    .hero h1 {
+        font-size: 24px !important;
+    }
+
+    .hero p {
+        font-size: 11px !important;
+    }
+
+    .hero-actions .btn {
+        padding: 8px 10px !important;
+        font-size: 10px !important;
+    }
+}
