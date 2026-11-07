@@ -93,3 +93,44 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+
+/* PharmaGuard Pro - Mobile Menu Auto Close */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuToggle = document.querySelector("#menu-toggle");
+    const navbar = document.querySelector(".navbar");
+    const navMenu = document.querySelector(".nav-menu");
+
+    if (!menuToggle || !navbar || !navMenu) return;
+
+    // Menu link click করলে বন্ধ হবে
+    navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            menuToggle.checked = false;
+        });
+    });
+
+    // Menu-এর বাইরে ক্লিক করলে বন্ধ হবে
+    document.addEventListener("click", function (event) {
+
+        if (
+            menuToggle.checked &&
+            !navbar.contains(event.target)
+        ) {
+            menuToggle.checked = false;
+        }
+
+    });
+
+    // Escape চাপলে বন্ধ হবে
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+            menuToggle.checked = false;
+        }
+
+    });
+
+});
