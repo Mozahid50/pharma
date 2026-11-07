@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | PharmaGuard Pro</title>
+
+    <link rel="stylesheet" href="admin-dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <i class="fa-solid fa-capsules"></i>
+            <span>PharmaGuard <b>Pro</b></span>
+        </div>
+
+        <p class="menu-heading">MAIN MENU</p>
+
+        <nav class="sidebar-menu">
+
+            <a href="admin-dashboard.html" class="active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="medicine-management.html">
+                <i class="fa-solid fa-pills"></i>
+                <span>Medicine Management</span>
+            </a>
+
+            <a href="inventory-management.html">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>Inventory Management</span>
+            </a>
+
+            <a href="sales-management.html">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Sales Management</span>
+            </a>
+
+            <!-- Smart Alerts -->
+            <a href="smart-alerts.html">
+                <i class="fa-solid fa-bell"></i>
+                <span>Smart Alerts</span>
+            </a>
+
+            <a href="reports.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+
+            <a href="staff-management.html">
+                <i class="fa-solid fa-users"></i>
+                <span>Staff Management</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="index.html" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div>
+                <h2>Admin Dashboard</h2>
+                <p>Welcome back! Manage your pharmacy efficiently.</p>
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Pharmacy Overview -->
+        <section class="overview">
+
+            <div class="section-heading">
+                <div>
+                    <h3>Pharmacy Overview</h3>
+                    <p>Monitor your pharmacy at a glance.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+
+                <!-- Total Medicines -->
+                <div class="stat-card">
+
+                    <div class="stat-icon medicine-icon">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+
+                    <div>
+                        <p>Total Medicines</p>
+                        <h2 id="totalMedicines">0</h2>
+                    </div>
+
+                </div>
+
+                <!-- Total Stock -->
+                <div class="stat-card">
+
+                    <div class="stat-icon stock-icon">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+
+                    <div>
+                        <p>Total Stock</p>
+                        <h2 id="totalStock">0</h2>
+                    </div>
+
+                </div>
+
+                <!-- Low Stock -->
+                <div class="stat-card">
+
+                    <div class="stat-icon lowstock-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <div>
+                        <p>Low Stock Items</p>
+                        <h2 id="lowStock">0</h2>
+                    </div>
+
+                </div>
+
+                <!-- Smart Alerts -->
+                <div class="stat-card">
+
+                    <div class="stat-icon expiry-icon">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+
+                    <div>
+                        <p>Smart Alerts</p>
+                        <h2 id="expiryAlerts">0</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Management Center -->
+        <section class="management-section">
+
+            <div class="section-heading">
+                <div>
+                    <h3>Management Center</h3>
+                    <p>Select a module to manage your pharmacy.</p>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+
+                <!-- Medicine Management -->
+                <a href="medicine-management.html" class="feature-card">
+
+                    <div class="feature-icon medicine-feature">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+
+                    <h4>Medicine Management</h4>
+
+                    <p>
+                        Add, edit, delete and view medicine details.
+                    </p>
+
+                    <span class="feature-link">
+                        Manage Medicines
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </a>
+
+
+                <!-- Inventory Management -->
+                <a href="inventory-management.html" class="feature-card">
+
+                    <div class="feature-icon inventory-feature">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+
+                    <h4>Inventory Management</h4>
+
+                    <p>
+                        Monitor available stock, batches and quantities.
+                    </p>
+
+                    <span class="feature-link">
+                        Manage Inventory
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </a>
+
+
+                <!-- Sales Management -->
+                <a href="sales-management.html" class="feature-card">
+
+                    <div class="feature-icon sales-feature">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+
+                    <h4>Sales Management</h4>
+
+                    <p>
+                        Record sales and review sales history.
+                    </p>
+
+                    <span class="feature-link">
+                        Manage Sales
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </a>
+
+
+                <!-- Smart Alerts -->
+                <a href="smart-alerts.html" class="feature-card">
+
+                    <div class="feature-icon expiry-feature">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+
+                    <h4>Smart Alerts</h4>
+
+                    <p>
+                        Monitor expired medicines, upcoming expiry dates,
+                        low stock and out-of-stock medicines.
+                    </p>
+
+                    <span class="feature-link">
+                        View Smart Alerts
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </a>
+
+
+                <!-- Reports -->
+                <a href="reports.html" class="feature-card">
+
+                    <div class="feature-icon reports-feature">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+
+                    <h4>Reports</h4>
+
+                    <p>
+                        Review inventory, stock and sales reports.
+                    </p>
+
+                    <span class="feature-link">
+                        View Reports
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </a>
+
+
+                <!-- Staff Management -->
+                <a href="staff-management.html" class="feature-card">
+
+                    <div class="feature-icon staff-feature">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <h4>Staff Management</h4>
+
+                    <p>
+                        Add, edit and manage pharmacy staff.
+                    </p>
+
+                    <span class="feature-link">
+                        Manage Staff
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 PharmaGuard Pro. All rights reserved.</p>
+        </footer>
+
+    </main>
+
+
+    <!-- Dashboard JavaScript -->
+    <script src="admin-dashboard.js"></script>
+
+</body>
+</html>

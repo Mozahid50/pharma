@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicine Alert Details | PharmaGuard Pro</title>
+
+<style>
+:root {
+    --green: #087F5B;
+    --teal: #087F8C;
+    --amber: #C18B20;
+    --text: #263746;
+    --muted: #687B75;
+    --border: rgba(8,138,145,.16);
+    --shadow: 0 5px 22px rgba(41,76,64,.055);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: #EAF2EC;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 12% 15%, rgba(16,166,107,.13), transparent 48%),
+        radial-gradient(ellipse at 85% 42%, rgba(8,138,145,.13), transparent 48%),
+        radial-gradient(ellipse at 45% 85%, rgba(193,139,32,.12), transparent 50%),
+        linear-gradient(120deg, #EAF3EC, #E8F1EF 50%, #F0F0E5);
+    background-attachment: fixed;
+}
+
+button, input, select {
+    font: inherit;
+}
+
+/* NAVBAR */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 17px 5%;
+    background: rgba(239,247,241,.94);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 3px 14px rgba(41,76,64,.06);
+    backdrop-filter: blur(14px);
+}
+
+.brand {
+    color: #245D49;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.brand span {
+    color: var(--teal);
+}
+
+header p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 9px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.btn-home {
+    color: white;
+    background: linear-gradient(120deg, var(--green), var(--teal));
+    text-decoration: none;
+}
+
+/* MAIN */
+
+main {
+    width: min(1450px, 100%);
+    margin: auto;
+    padding: 35px 5% 45px;
+}
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.page-heading h1 {
+    margin: 0;
+    color: #234B3D;
+    font-size: 28px;
+}
+
+.page-heading p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.updated {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: rgba(255,255,255,.7);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* TABLE PANEL */
+
+.panel {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255,255,255,.95);
+    box-shadow: var(--shadow);
+}
+
+.panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.panel-head h2 {
+    margin: 0;
+    color: #285441;
+    font-size: 17px;
+}
+
+.panel-head p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: minmax(190px, 1fr) auto auto;
+    gap: 10px;
+    padding: 17px 22px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(246,251,247,.75);
+}
+
+.field {
+    width: 100%;
+    min-width: 0;
+    height: 41px;
+    padding: 0 12px;
+    border: 1px solid #D9E6DF;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    color: var(--text);
+    font-size: 12px;
+}
+
+.field:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(8,138,145,.09);
+}
+
+.refresh-btn {
+    color: white;
+    background: var(--teal);
+}
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+}
+
+thead {
+    background: #F1F7F3;
+}
+
+th {
+    padding: 15px 17px;
+    color: #526B60;
+    font-size: 11px;
+    font-weight: 750;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 15px 17px;
+    border-top: 1px solid #EDF2EE;
+    color: #34473F;
+    font-size: 12px;
+}
+
+tbody tr:hover {
+    background: #F8FBF8;
+}
+
+.medicine-name {
+    color: #234B3D;
+    font-weight: 750;
+}
+
+.subtext {
+    margin-top: 5px;
+    color: #7A8B82;
+    font-size: 11px;
+}
+
+.badge {
+    display: inline-flex;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.badge.low {
+    color: #A92D36;
+    background: #FDEBEC;
+}
+
+.badge.out {
+    color: #A92D36;
+    background: #FCE2E4;
+}
+
+.badge.near {
+    color: #91610A;
+    background: #FFF4D9;
+}
+
+.badge.expired {
+    color: #08717A;
+    background: #E5F5F5;
+}
+
+/* EMPTY STATE */
+
+.empty {
+    padding: 55px 20px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.empty-icon {
+    margin-bottom: 12px;
+    font-size: 32px;
+}
+
+.empty h3 {
+    margin: 0 0 8px;
+    color: #315545;
+    font-size: 17px;
+}
+
+.empty p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 17px 22px;
+    border-top: 1px solid var(--border);
+    background: rgba(239,247,241,.92);
+    color: #52675C;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.footer p {
+    margin: 0;
+    text-align: right;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 700px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    header {
+        padding: 14px 4%;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    header p {
+        font-size: 10px;
+    }
+
+    .btn-home {
+        padding: 9px 11px;
+        font-size: 11px;
+    }
+
+    main {
+        padding: 25px 4% 35px;
+    }
+
+    .page-heading h1 {
+        font-size: 23px;
+    }
+
+    .filters {
+        grid-template-columns: 1fr 1fr;
+        padding: 14px;
+    }
+
+    .search-field {
+        grid-column: 1 / -1;
+    }
+
+    .footer {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .footer p {
+        text-align: left;
+    }
+}
+
+@media(max-width: 380px) {
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .search-field {
+        grid-column: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        
+        <div class="brand">PharmaGuard <span>Pro</span></div>
+        <p>Inventory Management · Smart Alert Details</p>
+    </div>
+
+    <a href="index.html" class="btn btn-home">← Home Page</a>
+</header>
+
+<main>
+
+    <section class="page-heading">
+        <div>
+            <h1 id="pageTitle">Medicine Details</h1>
+            <p id="pageDescription">View medicines belonging to this alert category.</p>
+        </div>
+
+        <div class="updated" id="dashboardUpdated">
+            Last checked: --
+        </div>
+    </section>
+
+    <section class="panel">
+
+        <div class="panel-head">
+            <div>
+                <h2 id="tableTitle">Medicine Details</h2>
+                <p id="tableDescription">Only medicines matching the selected alert will appear here.</p>
+            </div>
+        </div>
+
+        <div class="filters">
+            <input
+                type="search"
+                id="searchInput"
+                class="field search-field"
+                placeholder="Search medicine or batch..."
+                aria-label="Search medicine"
+            >
+
+            <select id="sortFilter" class="field" aria-label="Sort medicines">
+                <option value="name">Sort: Medicine Name</option>
+                <option value="stock-asc">Stock: Low to High</option>
+                <option value="stock-desc">Stock: High to Low</option>
+                <option value="expiry">Expiry Date</option>
+            </select>
+
+            <button type="button" id="refreshBtn" class="btn refresh-btn">
+                ↻ Refresh
+            </button>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Category</th>
+                        <th>Manufacturer</th>
+                        <th>Batch Number</th>
+                        <th>Stock</th>
+                        <th>Expiry Date</th>
+                        <th>Alert</th>
+                    </tr>
+                </thead>
+
+                <tbody id="medicineTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="empty" id="emptyState" hidden>
+            <div class="empty-icon">✓</div>
+            <h3 id="emptyTitle">No medicines found</h3>
+            <p id="emptyMessage">There are no medicines in this category.</p>
+        </div>
+
+        <div class="footer">
+            <div id="resultCount">0 medicines</div>
+            <p>
+                © 2026 PharmaGuard Pro. All rights reserved.<br>
+                Smart Pharmacy Inventory Management System
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+(() => {
+    "use strict";
+
+    const MEDICINES_KEY = "pharmaMedicines";
+    const NEAR_EXPIRY_DAYS = 30;
+
+    /*
+       Dashboard View Details URL:
+       alert-details.html?type=low
+       alert-details.html?type=near
+       alert-details.html?type=out
+       alert-details.html?type=expired
+    */
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedType = (params.get("type") || "").toLowerCase();
+
+    const categories = {
+        low: {
+            title: "Low Stock Medicines",
+            description: "Showing only medicines below their minimum stock level.",
+            empty: "No low stock medicines found.",
+            label: "Low Stock"
+        },
+        near: {
+            title: "Near Expiry Medicines",
+            description: "Showing only medicines expiring within the next 30 days.",
+            empty: "No near expiry medicines found.",
+            label: "Near Expiry"
+        },
+        out: {
+            title: "Out of Stock Medicines",
+            description: "Showing only medicines with zero available stock.",
+            empty: "No out of stock medicines found.",
+            label: "Out of Stock"
+        },
+        expired: {
+            title: "Expired Medicines",
+            description: "Showing only medicines whose expiry date has passed.",
+            empty: "No expired medicines found.",
+            label: "Expired"
+        }
+    };
+
+    const currentCategory = categories[requestedType] ? requestedType : null;
+
+    const pageTitle = document.getElementById("pageTitle");
+    const pageDescription = document.getElementById("pageDescription");
+    const tableTitle = document.getElementById("tableTitle");
+    const tableDescription = document.getElementById("tableDescription");
+    const tableBody = document.getElementById("medicineTableBody");
+    const emptyState = document.getElementById("emptyState");
+    const emptyTitle = document.getElementById("emptyTitle");
+    const emptyMessage = document.getElementById("emptyMessage");
+    const searchInput = document.getElementById("searchInput");
+    const sortFilter = document.getElementById("sortFilter");
+    const resultCount = document.getElementById("resultCount");
+    const updated = document.getElementById("dashboardUpdated");
+
+    if (currentCategory) {
+        const info = categories[currentCategory];
+
+        pageTitle.textContent = info.title;
+        pageDescription.textContent = info.description;
+        tableTitle.textContent = info.title;
+        tableDescription.textContent = "Category: " + info.label;
+        emptyTitle.textContent = info.empty;
+    } else {
+        pageTitle.textContent = "Medicine Alert Details";
+        pageDescription.textContent = "No valid alert category was selected.";
+        tableTitle.textContent = "No category selected";
+        tableDescription.textContent = "Open this page from a dashboard View Details link.";
+        emptyTitle.textContent = "Select an alert category";
+        emptyMessage.textContent = "Please return to the dashboard and click View Details on an alert card.";
+    }
+
+    function loadMedicines() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(MEDICINES_KEY) || "[]");
+
+            if (Array.isArray(saved)) return saved;
+
+            if (saved && Array.isArray(saved.medicines)) {
+                return saved.medicines;
+            }
+
+            return [];
+        } catch (error) {
+            console.error("Unable to load medicines:", error);
+            return [];
+        }
+    }
+
+    function getValue(medicine, keys, fallback = "") {
+        for (const key of keys) {
+            if (
+                medicine[key] !== undefined &&
+                medicine[key] !== null &&
+                medicine[key] !== ""
+            ) {
+                return medicine[key];
+            }
+        }
+
+        return fallback;
+    }
+
+    function getStock(medicine) {
+        const value = Number(getValue(medicine, [
+            "stock",
+            "quantity",
+            "stockQuantity",
+            "currentStock",
+            "availableStock"
+        ], 0));
+
+        return Number.isFinite(value) ? value : 0;
+    }
+
+    function getMinimumStock(medicine) {
+        const value = Number(getValue(medicine, [
+            "lowStockLimit",
+            "minStock",
+            "minimumStock",
+            "reorderLevel"
+        ], 10));
+
+        return Number.isFinite(value) ? value : 10;
+    }
+
+    function getName(medicine) {
+        return String(getValue(medicine, [
+            "name",
+            "medicineName",
+            "productName",
+            "title"
+        ], "Unnamed medicine"));
+    }
+
+    function getCategory(medicine) {
+        return String(getValue(medicine, [
+            "category",
+            "medicineCategory",
+            "type"
+        ], "N/A"));
+    }
+
+    function getManufacturer(medicine) {
+        return String(getValue(medicine, [
+            "manufacturer",
+            "company",
+            "brand"
+        ], "N/A"));
+    }
+
+    function getBatch(medicine) {
+        return String(getValue(medicine, [
+            "batchNumber",
+            "batchNo",
+            "batch",
+            "batch_number"
+        ], "N/A"));
+    }
+
+    function getExpiry(medicine) {
+        return getValue(medicine, [
+            "expiryDate",
+            "expiry",
+            "expirationDate",
+            "expireDate",
+            "expiry_date"
+        ], "");
+    }
+
+    function parseDate(value) {
+        if (!value) return null;
+
+        const str = String(value).trim();
+        const match = str.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+        let date;
+
+        if (match) {
+            date = new Date(
+                Number(match[1]),
+                Number(match[2]) - 1,
+                Number(match[3])
+            );
+        } else {
+            date = new Date(str);
+        }
+
+        if (Number.isNaN(date.getTime())) return null;
+
+        date.setHours(0, 0, 0, 0);
+        return date;
+    }
+
+    function daysUntil(date) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        return Math.ceil((date - today) / 86400000);
+    }
+
+    /*
+       One medicine can have more than one alert.
+       But the page displays ONLY the category selected
+       through the dashboard URL.
+    */
+
+    function getAlerts(medicine) {
+        const alerts = [];
+
+        const stock = getStock(medicine);
+        const minimum = getMinimumStock(medicine);
+        const expiry = parseDate(getExpiry(medicine));
+
+        if (stock <= 0) {
+            alerts.push("out");
+        } else if (stock <= minimum) {
+            alerts.push("low");
+        }
+
+        if (expiry) {
+            const remaining = daysUntil(expiry);
+
+            if (remaining < 0) {
+                alerts.push("expired");
+            } else if (remaining <= NEAR_EXPIRY_DAYS) {
+                alerts.push("near");
+            }
+        }
+
+        return alerts;
+    }
+
+    function formatDate(value) {
+        const date = parseDate(value);
+
+        if (!date) return value ? String(value) : "N/A";
+
+        return date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
+    }
+
+    function createCell(value, className = "") {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+
+        if (className) cell.className = className;
+
+        return cell;
+    }
+
+    function createRow(medicine) {
+        const row = document.createElement("tr");
+
+        const nameCell = document.createElement("td");
+
+        const name = document.createElement("div");
+        name.className = "medicine-name";
+        name.textContent = getName(medicine);
+
+        nameCell.appendChild(name);
+
+        const id = getValue(medicine, ["id", "medicineId"], "");
+
+        if (id !== "") {
+            const sub = document.createElement("div");
+            sub.className = "subtext";
+            sub.textContent = "ID: " + id;
+            nameCell.appendChild(sub);
+        }
+
+        row.appendChild(nameCell);
+        row.appendChild(createCell(getCategory(medicine)));
+        row.appendChild(createCell(getManufacturer(medicine)));
+        row.appendChild(createCell(getBatch(medicine)));
+        row.appendChild(createCell(String(getStock(medicine))));
+        row.appendChild(createCell(formatDate(getExpiry(medicine))));
+
+        const alertCell = document.createElement("td");
+        const badge = document.createElement("span");
+
+        badge.className = "badge " + currentCategory;
+        badge.textContent = categories[currentCategory].label;
+
+        alertCell.appendChild(badge);
+        row.appendChild(alertCell);
+
+        return row;
+    }
+
+    function refresh() {
+        const medicines = loadMedicines();
+
+        if (!currentCategory) {
+            tableBody.replaceChildren();
+            emptyState.hidden = false;
+            resultCount.textContent = "0 medicines";
+            updated.textContent = "Last checked: --";
+            return;
+        }
+
+        const search = searchInput.value.trim().toLowerCase();
+
+        // প্রথমে নির্বাচিত category অনুযায়ী medicine filter।
+        let filtered = medicines.filter(medicine => {
+            return getAlerts(medicine).includes(currentCategory);
+        });
+
+        // এরপর search apply।
+        filtered = filtered.filter(medicine => {
+            const searchable = [
+                getName(medicine),
+                getCategory(medicine),
+                getManufacturer(medicine),
+                getBatch(medicine)
+            ].join(" ").toLowerCase();
+
+            return searchable.includes(search);
+        });
+
+        // Sorting।
+        const sortType = sortFilter.value;
+
+        filtered.sort((a, b) => {
+            if (sortType === "stock-asc") {
+                return getStock(a) - getStock(b);
+            }
+
+            if (sortType === "stock-desc") {
+                return getStock(b) - getStock(a);
+            }
+
+            if (sortType === "expiry") {
+                const dateA = parseDate(getExpiry(a));
+                const dateB = parseDate(getExpiry(b));
+
+                if (!dateA && !dateB) return 0;
+                if (!dateA) return 1;
+                if (!dateB) return -1;
+
+                return dateA - dateB;
+            }
+
+            return getName(a).localeCompare(getName(b));
+        });
+
+        tableBody.replaceChildren();
+
+        filtered.forEach(medicine => {
+            tableBody.appendChild(createRow(medicine));
+        });
+
+        emptyState.hidden = filtered.length > 0;
+
+        if (filtered.length === 0) {
+            emptyMessage.textContent =
+                search
+                    ? "No medicines match your search in this category."
+                    : categories[currentCategory].empty;
+        }
+
+        resultCount.textContent =
+            filtered.length +
+            (filtered.length === 1 ? " medicine" : " medicines");
+
+        updated.textContent =
+            "Last checked: " +
+            new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+    }
+
+    searchInput.addEventListener("input", refresh);
+    sortFilter.addEventListener("change", refresh);
+
+    document.getElementById("refreshBtn")
+        .addEventListener("click", refresh);
+
+    // অন্য tab থেকে Dashboard data change হলে refresh।
+    window.addEventListener("storage", event => {
+        if (event.key === MEDICINES_KEY || event.key === null) {
+            refresh();
+        }
+    });
+
+    window.addEventListener("focus", refresh);
+    window.addEventListener("pageshow", refresh);
+
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) refresh();
+    });
+
+    refresh();
+
+})();
+</script>
+
+</body>
+</html>

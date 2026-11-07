@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Alerts | PharmaGuard Pro</title>
+
+    <link rel="stylesheet" href="smart-alerts.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <a class="brand" href="admin-dashboard.html">
+            <i class="fa-solid fa-capsules"></i>
+            <span>PharmaGuard <b>Pro</b></span>
+        </a>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="menu">
+
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="medicine-management.html">
+                <i class="fa-solid fa-pills"></i>
+                Medicine Management
+            </a>
+
+            <a href="inventory-management.html">
+                <i class="fa-solid fa-box-open"></i>
+                Inventory Management
+            </a>
+
+            <a href="sales-management.html">
+                <i class="fa-solid fa-receipt"></i>
+                Sales Management
+            </a>
+
+            <a class="active" href="smart-alerts.html">
+                <i class="fa-solid fa-bell"></i>
+                Smart Alerts
+            </a>
+
+            <a href="reports.html">
+                <i class="fa-solid fa-chart-column"></i>
+                Reports
+            </a>
+
+            <a href="staff-management.html">
+                <i class="fa-solid fa-users"></i>
+                Staff Management
+            </a>
+
+        </nav>
+
+        <a class="logout" href="admin-login.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- PAGE HEADER -->
+        <header class="page-header">
+
+            <div class="heading">
+
+                <button class="mobile-menu"
+                        id="menuToggle"
+                        aria-label="Open menu"
+                        type="button">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1>
+                        Smart Alerts
+                    </h1>
+
+                    <p>
+                        Monitor medicine expiry, low stock and
+                        out-of-stock medicines in one place.
+                    </p>
+                </div>
+
+            </div>
+
+            <a class="dashboard-btn" href="admin-dashboard.html">
+                <i class="fa-solid fa-arrow-left"></i>
+                Dashboard
+            </a>
+
+        </header>
+
+
+        <!-- EXPIRY SUMMARY -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+
+                <div class="stat-icon red">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
+                <div>
+                    <p>Expired Medicines</p>
+                    <h2 id="expiredCount">0</h2>
+                    <small>Past expiry date</small>
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <p>Near Expiry</p>
+                    <h2 id="nearCount">0</h2>
+                    <small>Within 30 days</small>
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </div>
+
+                <div>
+                    <p>Safe Medicines</p>
+                    <h2 id="safeCount">0</h2>
+                    <small>More than 30 days left</small>
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+
+                <div>
+                    <p>Expired Units</p>
+                    <h2 id="expiredUnits">0</h2>
+                    <small>Units in expired stock</small>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- SMART STOCK ALERTS -->
+        <section class="panel" id="stockAlertsPanel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>
+                        Smart Stock Alerts
+                    </h2>
+
+                    <p>
+                        Identify medicines that need restocking.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- STOCK ALERT CARDS -->
+            <div id="stockAlertCards" class="stats-grid">
+
+                <!-- LOW STOCK -->
+                <article class="stat-card alert-stat-card">
+
+                    <div class="alert-card-main">
+
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+                        </div>
+
+                        <div class="alert-card-info">
+                            <p>Low Stock</p>
+                            <h2 id="lowStockCount">0</h2>
+                            <small>Restocking recommended</small>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- OUT OF STOCK -->
+                <article class="stat-card alert-stat-card">
+
+                    <div class="alert-card-main">
+
+                        <div class="stat-icon red">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+
+                        <div class="alert-card-info">
+                            <p>Out of Stock</p>
+                            <h2 id="outOfStockCount">0</h2>
+                            <small>No units available</small>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- STOCK ALERT TABLE -->
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Current Stock</th>
+                            <th>Minimum Stock</th>
+                            <th>Alert Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="stockAlertTableBody">
+
+                        <tr>
+                            <td colspan="4">
+                                Stock alerts will appear here.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEDICINE EXPIRY LIST -->
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>
+                        <i class="fa-solid fa-list-check"></i>
+                        Medicine Expiry List
+                    </h2>
+
+                    <p>
+                        Expiry status is calculated from the dates
+                        recorded in Medicine Management.
+                    </p>
+                </div>
+
+                <button class="outline-btn"
+                        id="downloadExpiry"
+                        type="button">
+
+                    <i class="fa-solid fa-download"></i>
+                    Export CSV
+
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH AND FILTERS -->
+            <div class="filters">
+
+                <input
+                    type="search"
+                    id="expirySearch"
+                    placeholder="Search medicine, batch or manufacturer..."
+                    aria-label="Search medicines"
+                >
+
+                <select id="statusFilter"
+                        aria-label="Filter by expiry status">
+
+                    <option value="all">All Statuses</option>
+                    <option value="expired">Expired</option>
+                    <option value="near">Near Expiry</option>
+                    <option value="safe">Safe</option>
+                    <option value="unknown">No Expiry Date</option>
+
+                </select>
+
+                <select id="sortFilter"
+                        aria-label="Sort expiry list">
+
+                    <option value="soonest">Expiry: Soonest First</option>
+                    <option value="latest">Expiry: Latest First</option>
+                    <option value="name">Medicine Name A–Z</option>
+                    <option value="stock">Stock: Highest First</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- EXPIRY TABLE -->
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Batch Number</th>
+                            <th>Manufacturer</th>
+                            <th>Current Stock</th>
+                            <th>Expiry Date</th>
+                            <th>Days Remaining</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="expiryTableBody"></tbody>
+
+                </table>
+
+                <div class="empty-state" id="emptyState">
+                    No medicines match this filter.
+                </div>
+
+            </div>
+
+
+            <div class="table-footer" id="resultCount">
+                Showing 0 medicines
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 PharmaGuard Pro. All rights reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script src="smart-alerts.js"></script>
+
+</body>
+</html>

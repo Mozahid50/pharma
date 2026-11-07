@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Management | PharmaGuard Pro</title>
+    <link rel="stylesheet" href="sales-management.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="admin-dashboard.html">
+            <i class="fa-solid fa-capsules"></i>
+            <span>PharmaGuard <b>Pro</b></span>
+        </a>
+
+        <p class="menu-label">MAIN MENU</p>
+        <nav class="menu">
+    <a href="admin-dashboard.html">
+        <i class="fa-solid fa-house"></i> Dashboard
+    </a>
+
+    <a href="medicine-management.html">
+        <i class="fa-solid fa-pills"></i> Medicine Management
+    </a>
+
+    <a href="inventory-management.html">
+        <i class="fa-solid fa-box-open"></i> Inventory Management
+    </a>
+
+    <a class="active" href="sales-management.html">
+        <i class="fa-solid fa-receipt"></i> Sales Management
+    </a>
+
+    <a href="smart-alerts.html">
+        <i class="fa-solid fa-bell"></i> Smart Alerts
+    </a>
+
+    <a href="reports.html">
+        <i class="fa-solid fa-chart-column"></i> Reports
+    </a>
+
+    <a href="staff-management.html">
+        <i class="fa-solid fa-users"></i> Staff Management
+    </a>
+</nav>
+
+        <a class="logout" href="admin-login.html">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+    </aside>
+
+    <main class="main">
+        <header class="page-header">
+            <div class="heading">
+                <button class="mobile-menu" id="menuToggle" aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div>
+                    <h1>Sales Management</h1>
+                    <p>Record sales, update stock automatically and track sales history.</p>
+                </div>
+            </div>
+            <a class="dashboard-btn" href="admin-dashboard.html">
+                <i class="fa-solid fa-arrow-left"></i> Dashboard
+            </a>
+        </header>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-icon blue"><i class="fa-solid fa-receipt"></i></div>
+                <div><p>Total Sales</p><h2 id="totalSales">৳ 0.00</h2><small>This month</small></div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon green"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div><p>Total Transactions</p><h2 id="totalTransactions">0</h2><small>This month</small></div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon orange"><i class="fa-solid fa-pills"></i></div>
+                <div><p>Units Sold</p><h2 id="unitsSold">0</h2><small>This month</small></div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon purple"><i class="fa-solid fa-sack-dollar"></i></div>
+                <div><p>Average Sale Value</p><h2 id="averageSale">৳ 0.00</h2><small>This month</small></div>
+            </article>
+        </section>
+
+        <section class="workspace">
+            <article class="panel sale-panel">
+                <div class="panel-heading">
+                    <div class="heading-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
+                    <div><h2>New Sale</h2><p>Add medicines to the list and save the sale record.</p></div>
+                </div>
+
+                <form id="addItemForm">
+                    <div class="medicine-fields">
+                        <div class="field">
+                            <label for="medicineSelect">Select Medicine <span>*</span></label>
+                            <select id="medicineSelect" required>
+                                <option value="">Choose a medicine</option>
+                            </select>
+                        </div>
+                        <div class="field quantity-field">
+                            <label for="quantity">Quantity <span>*</span></label>
+                            <input id="quantity" type="number" min="1" step="1" value="1" required>
+                        </div>
+                        <div class="field price-field">
+                            <label for="unitPrice">Unit Price</label>
+                            <input id="unitPrice" type="text" value="৳ 0.00" readonly>
+                        </div>
+                        <button class="primary-btn add-btn" type="submit">
+                            <i class="fa-solid fa-plus"></i> Add to List
+                        </button>
+                    </div>
+                    <p class="stock-hint" id="stockHint">Choose a medicine to see its current stock.</p>
+                </form>
+
+                <div class="table-wrap cart-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th><th>Medicine</th><th>Batch</th>
+                                <th>Unit Price</th><th>Quantity</th><th>Total</th><th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartBody"></tbody>
+                    </table>
+                    <div class="empty-cart" id="emptyCart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <strong>No items added yet</strong>
+                        <p>Select a medicine and add it to the list.</p>
+                    </div>
+                </div>
+
+                <div class="cart-total">
+                    <span>Total Items: <b id="cartItems">0</b></span>
+                    <span>Total Amount: <strong id="cartTotal">৳ 0.00</strong></span>
+                </div>
+
+                <form id="completeSaleForm">
+                    <div class="checkout-fields">
+                        <div class="field">
+                            <label for="paymentMethod">Payment Method <span>*</span></label>
+                            <select id="paymentMethod" required>
+                                <option value="Cash">Cash</option>
+                                <option value="Card">Card</option>
+                                <option value="Mobile Banking">Mobile Banking</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="customerName">Customer Name (Optional)</label>
+                            <input id="customerName" type="text" maxlength="100"
+                                   placeholder="Enter name or reference">
+                        </div>
+                        <div class="field">
+                            <label for="saleNote">Note (Optional)</label>
+                            <input id="saleNote" type="text" maxlength="250"
+                                   placeholder="Internal note">
+                        </div>
+                    </div>
+                    <button class="primary-btn complete-btn" type="submit">
+                        <i class="fa-solid fa-file-invoice"></i> Save Sale Record
+                    </button>
+                </form>
+            </article>
+
+            <aside class="right-column">
+                <section class="panel quick-panel">
+                    <div class="panel-heading compact">
+                        <div class="heading-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h2>Quick Actions</h2>
+                    </div>
+                    <button class="quick-action" id="focusHistory">
+                        <i class="fa-regular fa-clock"></i><span>View Sales History</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="quick-action" id="todaySummary">
+                        <i class="fa-solid fa-chart-column"></i><span>Today's Sales Summary</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="quick-action" id="downloadReport">
+                        <i class="fa-solid fa-download"></i><span>Download Sales CSV</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </section>
+
+                <section class="panel recent-panel">
+                    <div class="panel-heading compact">
+                        <div class="heading-icon"><i class="fa-solid fa-file-lines"></i></div>
+                        <h2>Recent Sales</h2>
+                        <button class="text-btn" id="viewAll">View All</button>
+                    </div>
+                    <div id="recentSales" class="recent-list"></div>
+                </section>
+            </aside>
+        </section>
+
+        <section class="panel history-panel" id="historySection">
+            <div class="history-heading">
+                <div class="panel-heading compact">
+                    <div class="heading-icon"><i class="fa-regular fa-clock"></i></div>
+                    <div><h2>Sales History</h2><p>Records of saved sales transactions.</p></div>
+                </div>
+                <div class="history-filters">
+                    <input id="historySearch" type="search" placeholder="Search medicine, customer or sale ID...">
+                    <input id="dateFilter" type="date" aria-label="Filter by date">
+                    <button class="outline-btn" id="clearFilters" type="button">Clear</button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date &amp; Time</th><th>Sale ID</th><th>Customer / Reference</th>
+                            <th>Items</th><th>Total Amount</th><th>Payment</th><th>Status</th><th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesHistoryBody"></tbody>
+                </table>
+                <div class="empty-history" id="emptyHistory">No sales records found.</div>
+            </div>
+        </section>
+
+        <footer>© 2026 PharmaGuard Pro. All rights reserved.</footer>
+    </main>
+</div>
+
+<script src="sales-management.js"></script>
+</body>
+</html>

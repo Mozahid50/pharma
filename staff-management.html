@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management | PharmaGuard Pro</title>
+
+    <link rel="stylesheet" href="staff-management.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="admin-dashboard.html">
+            <i class="fa-solid fa-capsules"></i>
+            <span>PharmaGuard <b>Pro</b></span>
+        </a>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="menu">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="medicine-management.html">
+                <i class="fa-solid fa-pills"></i> Medicine Management
+            </a>
+
+            <a href="inventory-management.html">
+                <i class="fa-solid fa-box-open"></i> Inventory Management
+            </a>
+
+            <a href="sales-management.html">
+                <i class="fa-solid fa-receipt"></i> Sales Management
+            </a>
+
+            <a href="smart-alerts.html">
+                <i class="fa-solid fa-calendar-days"></i> Smart Alerts
+            </a>
+
+            <a href="reports.html">
+                <i class="fa-solid fa-chart-column"></i> Reports
+            </a>
+
+            <a class="active" href="staff-management.html">
+                <i class="fa-solid fa-users"></i> Staff Management
+            </a>
+        </nav>
+
+        <a class="logout" href="admin-login.html">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+    </aside>
+
+    <main class="main">
+
+        <header class="page-header">
+            <div class="heading">
+                <button class="mobile-menu" id="menuToggle"
+                        aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1>Staff Management</h1>
+                    <p>Manage pharmacy staff records and account status.</p>
+                </div>
+            </div>
+
+            <button class="primary-btn" id="addStaffBtn">
+                <i class="fa-solid fa-user-plus"></i> Add New Staff
+            </button>
+        </header>
+
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <p>Total Staff</p>
+                    <h2 id="totalStaff">0</h2>
+                    <small>All registered staff</small>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+                <div>
+                    <p>Active Staff</p>
+                    <h2 id="activeStaff">0</h2>
+                    <small>Currently active</small>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-user-clock"></i>
+                </div>
+                <div>
+                    <p>Inactive Staff</p>
+                    <h2 id="inactiveStaff">0</h2>
+                    <small>Currently inactive</small>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="panel">
+
+            <div class="toolbar">
+                <div>
+                    <h2>Staff Records</h2>
+                    <p>View, update and manage registered staff.</p>
+                </div>
+
+                <div class="filters">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" id="staffSearch"
+                               placeholder="Search staff...">
+                    </div>
+
+                    <select id="statusFilter" aria-label="Filter by status">
+                        <option value="all">All Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Staff ID</th>
+                            <th>Staff Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Joining Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="staffTableBody"></tbody>
+                </table>
+
+                <div class="empty-state" id="emptyState">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>No Staff Records Found</h3>
+                    <p>Add a staff member to get started.</p>
+                </div>
+            </div>
+
+            <div class="table-footer" id="resultCount">
+                0 staff members
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 PharmaGuard Pro. All rights reserved.
+        </footer>
+
+    </main>
+</div>
+
+<!-- Add/Edit Staff Modal -->
+<div class="modal-overlay" id="staffModal">
+    <div class="modal">
+
+        <div class="modal-header">
+            <div>
+                <h2 id="modalTitle">Add New Staff</h2>
+                <p>Enter the staff member's information.</p>
+            </div>
+
+            <button type="button" class="close-btn" id="closeModal"
+                    aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="staffForm">
+
+            <input type="hidden" id="editStaffId">
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="staffName">Full Name *</label>
+                    <input type="text" id="staffName"
+                           placeholder="Enter full name"
+                           maxlength="100" required>
+                </div>
+
+                <div class="field">
+                    <label for="staffPhone">Phone Number *</label>
+                    <input type="tel" id="staffPhone"
+                           placeholder="Enter phone number"
+                           maxlength="25" required>
+                </div>
+
+                <div class="field">
+                    <label for="staffEmail">Email Address *</label>
+                    <input type="email" id="staffEmail"
+                           placeholder="staff@example.com"
+                           maxlength="150" required>
+                </div>
+
+                <div class="field">
+                    <label for="staffRole">Staff Role *</label>
+                    <select id="staffRole" required>
+                        <option value="">Select Role</option>
+                        <option value="Pharmacist">Pharmacist</option>
+                        <option value="Assistant Pharmacist">Assistant Pharmacist</option>
+                        <option value="Inventory Manager">Inventory Manager</option>
+                        <option value="Sales Staff">Sales Staff</option>
+                        <option value="Storekeeper">Storekeeper</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="joiningDate">Joining Date *</label>
+                    <input type="date" id="joiningDate" required>
+                </div>
+
+                <div class="field">
+                    <label for="staffStatus">Account Status *</label>
+                    <select id="staffStatus" required>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="cancelBtn">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn" id="saveStaffBtn">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Staff
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script src="staff-management.js"></script>
+</body>
+</html>

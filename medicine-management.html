@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicine Management | PharmaGuard Pro</title>
+
+    <link rel="stylesheet" href="medicine-management.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <a href="admin-dashboard.html" class="brand">
+            <i class="fa-solid fa-capsules"></i>
+            <span>PharmaGuard <b>Pro</b></span>
+        </a>
+
+        <p class="menu-heading">MAIN MENU</p>
+
+        <nav class="sidebar-menu">
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="medicine-management.html" class="active">
+                <i class="fa-solid fa-pills"></i> Medicine Management
+            </a>
+
+            <a href="inventory-management.html">
+                <i class="fa-solid fa-boxes-stacked"></i> Inventory Management
+            </a>
+
+            <a href="sales-management.html">
+                <i class="fa-solid fa-receipt"></i> Sales Management
+            </a>
+
+            <a href="smart-alerts.html">
+                <i class="fa-solid fa-calendar-xmark"></i> Smart Alerts
+            </a>
+
+            <a href="reports.html">
+                <i class="fa-solid fa-chart-column"></i> Reports
+            </a>
+
+            <a href="staff-management.html">
+                <i class="fa-solid fa-users"></i> Staff Management
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="index.html" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Medicine Management</h1>
+                <p>Add, update, search and manage pharmacy medicines.</p>
+            </div>
+
+            <a href="admin-dashboard.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Dashboard
+            </a>
+        </header>
+
+        <!-- Summary -->
+        <section class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-icon blue">
+                    <i class="fa-solid fa-pills"></i>
+                </div>
+                <div>
+                    <p>Total Medicines</p>
+                    <h2 id="medicineCount">0</h2>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon green">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+                <div>
+                    <p>Total Stock</p>
+                    <h2 id="stockCount">0</h2>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon orange">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <p>Low Stock</p>
+                    <h2 id="lowStockCount">0</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add/Edit Form -->
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <h2 id="formTitle">Add New Medicine</h2>
+                    <p>Enter the medicine information below.</p>
+                </div>
+            </div>
+
+            <form id="medicineForm">
+
+                <input type="hidden" id="medicineId">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="medicineName">Medicine Name *</label>
+                        <input type="text" id="medicineName"
+                               placeholder="e.g. Paracetamol 500mg"
+                               required maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Tablet">Tablet</option>
+                            <option value="Capsule">Capsule</option>
+                            <option value="Syrup">Syrup</option>
+                            <option value="Injection">Injection</option>
+                            <option value="Drops">Drops</option>
+                            <option value="Cream">Cream</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="manufacturer">Manufacturer *</label>
+                        <input type="text" id="manufacturer"
+                               placeholder="Manufacturer name"
+                               required maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Unit Price (৳) *</label>
+                        <input type="number" id="price"
+                               placeholder="0.00" min="0.01"
+                               step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stock">Current Stock *</label>
+                        <input type="number" id="stock"
+                               placeholder="Enter quantity"
+                               min="0" step="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lowStockLimit">Low Stock Limit *</label>
+                        <input type="number" id="lowStockLimit"
+                               value="10" min="0" step="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="batchNumber">Batch Number *</label>
+                        <input type="text" id="batchNumber"
+                               placeholder="e.g. BTH-1001"
+                               required maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date *</label>
+                        <input type="date" id="expiryDate" required>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn" id="saveBtn">
+                        <i class="fa-solid fa-plus"></i> Add Medicine
+                    </button>
+
+                    <button type="button" class="cancel-btn"
+                            id="cancelBtn" hidden>
+                        Cancel Edit
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Medicine List -->
+        <section class="panel">
+            <div class="list-heading">
+                <div>
+                    <h2>Medicine List</h2>
+                    <p>View and manage all recorded medicines.</p>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="searchInput"
+                           placeholder="Search medicine...">
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medicine</th>
+                            <th>Category</th>
+                            <th>Manufacturer</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="medicineTableBody"></tbody>
+                </table>
+            </div>
+
+            <p id="emptyMessage" class="empty-message">
+                No medicines added yet. Use the form above to add your first medicine.
+            </p>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2026 PharmaGuard Pro. All rights reserved.</p>
+        </footer>
+
+    </main>
+
+    <script src="medicine-management.js"></script>
+</body>
+</html>

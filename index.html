@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="PharmaGuard Pro is a pharmacy inventory management system for monitoring medicines, stock levels, sales and expiry alerts."
+    >
+
+    <title>PharmaGuard Pro | Pharmacy Management</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icon Library -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main Stylesheet -->
+<link rel="stylesheet" href="style.css?v=3.0">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <a href="index.html" class="logo" aria-label="PharmaGuard Pro home">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-capsules"></i>
+                </span>
+                <span>PharmaGuard <strong>Pro</strong></span>
+            </a>
+
+            <input
+                type="checkbox"
+                id="menu-toggle"
+                class="menu-toggle"
+                aria-label="Toggle navigation menu"
+            >
+
+            <label for="menu-toggle" class="menu-icon">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#overview" class="nav-link">Live Overview</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+
+                <div class="nav-actions">
+                    <a href="admin-login.html" class="btn btn-outline">
+                        <i class="fa-solid fa-user-shield"></i>
+                        Admin Login
+                    </a>
+
+                    <a href="staff-login.html" class="btn btn-primary">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Staff Login
+                    </a>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO SECTION
+        ========================== -->
+        <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+
+                <h1>
+                    Smarter Inventory<br>
+                    <span>Safer Pharmacy.</span>
+                </h1>
+
+                <p>
+                    Manage medicines, monitor stock, track sales and identify
+                    expiry risks through one organized pharmacy management system.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="staff-login.html" class="btn btn-primary">
+                        Get Started
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="#overview" class="btn btn-light">
+                        Live Overview
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+<!-- PROFESSIONAL INVENTORY & SALES DASHBOARD -->
+<div class="dashboard-group combined-dashboard-group">
+
+    <div class="combined-dashboard-heading">
+        <div>
+            <h3>Live Overview</h3>
+            <p>Inventory performance and sales analytics</p>
+        </div>
+
+        <span class="overview-status">
+            <span></span> LIVE DATA
+        </span>
+    </div>
+
+    <!-- ONE LARGE CARD -->
+    <div class="combined-dashboard-card">
+
+        <div class="combined-card-content">
+
+            <!-- INVENTORY SECTION -->
+            <div class="combined-section-heading">
+                <div class="combined-section-icon inventory-heading-icon">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+                <div>
+                    <h4>Inventory Summary</h4>
+                    <p>Current stock and medicine records</p>
+                </div>
+            </div>
+
+            <div class="combined-metrics-grid">
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-green">
+                        <i class="fa-solid fa-capsules"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Total Medicines</span>
+                        <h3 id="dashTotalMedicines">0</h3>
+                        <p>Medicine records</p>
+                    </div>
+                </article>
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-blue">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Total Stock</span>
+                        <h3 id="dashTotalStock">0</h3>
+                        <p>Units available</p>
+                    </div>
+                </article>
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-purple">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Medicine Types</span>
+                        <h3 id="dashMedicineTypes">0</h3>
+                        <p>Categories recorded</p>
+                    </div>
+                </article>
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-amber">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Stock Value</span>
+                        <h3 id="dashStockValue">৳0.00</h3>
+                        <p>Estimated inventory value</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="combined-section-divider"></div>
+
+            <!-- SALES SECTION -->
+            <div class="combined-section-heading">
+                <div class="combined-section-icon sales-heading-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div>
+                    <h4>Sales Summary</h4>
+                    <p>Sales performance and transaction activity</p>
+                </div>
+            </div>
+
+            <div class="combined-metrics-grid">
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-green">
+                        <i class="fa-solid fa-money-bill-trend-up"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Total Sales</span>
+                        <h3 id="dashTotalSales">৳0.00</h3>
+                        <p>Total recorded sales</p>
+                    </div>
+                </article>
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-blue">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Transactions</span>
+                        <h3 id="dashTransactions">0</h3>
+                        <p>Recorded transactions</p>
+                    </div>
+                </article>
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-purple">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Units Sold</span>
+                        <h3 id="dashUnitsSold">0</h3>
+                        <p>Total units sold</p>
+                    </div>
+                </article>
+
+                <article class="combined-metric">
+                    <div class="combined-metric-icon icon-amber">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div class="combined-metric-info">
+                        <span>Average Sale</span>
+                        <h3 id="dashAverageSale">৳0.00</h3>
+                        <p>Average transaction value</p>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Smart Stock Alerts -->
+<div class="dashboard-group smart-alerts-group">
+
+    <div class="smart-alerts-heading">
+        <div>
+            <h3>Smart Stock Alerts</h3>
+            <p>Monitor inventory risks and expiry status</p>
+        </div>
+
+        <span class="alerts-live-badge">
+            <span class="alerts-live-dot"></span>
+            LIVE MONITORING
+        </span>
+    </div>
+
+    <div class="dashboard-metrics alert-metrics">
+
+        <!-- Low Stock -->
+        <article class="dashboard-metric alert-card alert-low">
+            <div class="alert-card-top">
+                <div class="alert-icon-box">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <span class="alert-status status-warning">Attention</span>
+            </div>
+
+            <div class="alert-card-info">
+                <span class="alert-category">LOW STOCK</span>
+                <h3 id="dashLowStock">0</h3>
+                <p>Medicines below stock limit</p>
+            </div>
+
+            <a href="alert-details.html?type=low"
+               class="view-details-btn">
+                View Details
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </article>
+
+        <!-- Out of Stock -->
+        <article class="dashboard-metric alert-card alert-out">
+            <div class="alert-card-top">
+                <div class="alert-icon-box">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+                <span class="alert-status status-critical">Critical</span>
+            </div>
+
+            <div class="alert-card-info">
+                <span class="alert-category">OUT OF STOCK</span>
+                <h3 id="dashOutOfStock">0</h3>
+                <p>Medicines currently unavailable</p>
+            </div>
+
+            <a href="alert-details.html?type=out"
+               class="view-details-btn">
+                View Details
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </article>
+
+        <!-- Expired -->
+        <article class="dashboard-metric alert-card alert-expired">
+            <div class="alert-card-top">
+                <div class="alert-icon-box">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                </div>
+                <span class="alert-status status-expired">Expired</span>
+            </div>
+
+            <div class="alert-card-info">
+                <span class="alert-category">EXPIRED MEDICINES</span>
+                <h3 id="dashExpired">0</h3>
+                <p>Medicines past expiry date</p>
+            </div>
+
+            <a href="alert-details.html?type=expired"
+               class="view-details-btn">
+                View Details
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </article>
+
+        <!-- Near Expiry -->
+        <article class="dashboard-metric alert-card alert-near">
+            <div class="alert-card-top">
+                <div class="alert-icon-box">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <span class="alert-status status-warning">Upcoming</span>
+            </div>
+
+            <div class="alert-card-info">
+                <span class="alert-category">NEAR EXPIRY</span>
+                <h3 id="dashNearExpiry">0</h3>
+                <p>Medicines nearing expiry date</p>
+            </div>
+
+            <a href="alert-details.html?type=near"
+               class="view-details-btn">
+                View Details
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </article>
+
+    </div>
+</div>
+
+<!-- Last Updated -->
+<p class="dashboard-updated">
+    <i class="fa-solid fa-rotate"></i>
+    Last updated:
+    <span id="dashboardUpdated">Waiting for data...</span>
+</p>
+
+<!-- =========================
+     PROFESSIONAL ABOUT SECTION
+========================== -->
+
+<section class="section about-section" id="about">
+
+    <div class="container about-container">
+
+        <div class="about-main-card">
+
+            <!-- About Heading -->
+            <div class="about-top">
+                <span class="section-label">ABOUT THE PROJECT</span>
+
+                <h2>A Better Way to Manage Pharmacy Inventory</h2>
+
+                <p>
+                    Discover how PharmaGuard Pro makes pharmacy
+                    inventory management more organized and efficient.
+                </p>
+            </div>
+
+            <!-- Vertical Steps -->
+            <div class="about-timeline">
+
+                <!-- Step 01 -->
+                <div class="about-step">
+                    <div class="about-step-number">
+                        <i class="fa-solid fa-building-shield"></i>
+                    </div>
+
+                    <div class="about-step-content">
+                        <span>01 — INTRODUCTION</span>
+                        <h3>Who We Are</h3>
+                        <p>
+                            PharmaGuard Pro is a pharmacy inventory
+                            management project designed to organize
+                            daily medicine management tasks in one place.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="about-step">
+                    <div class="about-step-number">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <div class="about-step-content">
+                        <span>02 — OUR FOCUS</span>
+                        <h3>What We Focus On</h3>
+                        <p>
+                            The system focuses on stock accuracy,
+                            medicine expiry monitoring, sales records
+                            and timely alerts.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="about-step">
+                    <div class="about-step-number">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div class="about-step-content">
+                        <span>03 — OUR PURPOSE</span>
+                        <h3>Why PharmaGuard Pro</h3>
+                        <p>
+                            Our goal is to help authorized users make
+                            informed inventory decisions through
+                            organized and accessible information.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Label -->
+            <div class="about-card-footer">
+                <i class="fa-solid fa-capsules"></i>
+                <span>Smarter Inventory Management</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+        <section class="section contact-section" id="contact">
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">CONTACT</span>
+                    <h2>Get in Touch</h2>
+                    <p>
+                        Have a question about the PharmaGuard Pro project?
+                        Use the contact details below.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+
+                    <div class="contact-info">
+
+                        <div class="contact-item">
+                            <span class="contact-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <div>
+                                <h3>Location</h3>
+                                <p>Bohoddarhatt, 23 No. Stall, Chattogram</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </span>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>+880 1829800750</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <div>
+                                <h3>Email</h3>
+                                <p>
+                                    <a href="mailto:mi0266044@gmail.com">
+                                        mi0266044@gmail.com
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+                            <input
+                                type="text"
+                                id="contactName"
+                                name="name"
+                                placeholder="Enter your name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input
+                                type="email"
+                                id="contactEmail"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea
+                                id="contactMessage"
+                                name="message"
+                                rows="5"
+                                placeholder="Write your message..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Send Message
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+
+                        <p
+                            id="contactFormStatus"
+                            class="form-status"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+<!-- =========================
+     FOOTER
+========================== -->
+<footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-content">
+
+            <!-- LEFT SIDE -->
+            <div class="footer-brand">
+                <a href="#home" class="logo footer-logo">
+                    <span class="logo-icon">
+                        <i class="fa-solid fa-capsules"></i>
+                    </span>
+                    <span>PharmaGuard <strong>Pro</strong></span>
+                </a>
+
+                <p>
+                    A pharmacy inventory management project focused on
+                    organized records and safer stock monitoring.
+                </p>
+            </div>
+
+            <!-- CENTER -->
+            <div class="footer-navigation">
+                <h3>Quick Actions</h3>
+
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#overview">Live Overview</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="footer-contact">
+                <h3>Contact Information</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Bohoddarhatt, Chattogram</p>
+                <p><i class="fa-solid fa-phone"></i> +880 1829800750</p>
+                <p><i class="fa-solid fa-envelope"></i> mi0266044@gmail.com</p>
+            </div>
+
+        </div>
+
+        <!-- COPYRIGHT -->
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="currentYear"></span>
+                PharmaGuard Pro. All rights reserved.
+            </p>
+
+            <a href="#home" aria-label="Back to top">
+                Back to top
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
+        </div>
+
+    </div>
+</footer>
+
+
+    <!-- Existing project scripts -->
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
