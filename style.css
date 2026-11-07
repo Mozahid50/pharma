@@ -4919,3 +4919,146 @@ video {
     text-align: center !important;
   }
 }
+
+
+/* ==========================================
+   PHARMAGUARD PRO - MOBILE NAVBAR FIX
+   Logo Left | Hamburger Right | 50% Side Menu
+========================================== */
+
+@media screen and (max-width: 600px) {
+
+    /* Navbar full width alignment */
+    .site-header .navbar.container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10px 16px !important;
+
+        box-sizing: border-box !important;
+        position: relative !important;
+    }
+
+    /* Logo - Extreme Left */
+    .navbar .logo {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        flex: 0 1 auto !important;
+        flex-shrink: 1 !important;
+
+        position: relative !important;
+        z-index: 1002 !important;
+    }
+
+    /* Logo Icon */
+    .navbar .logo-icon {
+        flex-shrink: 0 !important;
+    }
+
+    /* Hamburger - Extreme Right */
+    .navbar .menu-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: 46px !important;
+        height: 46px !important;
+        min-width: 46px !important;
+
+        margin: 0 0 0 auto !important;
+        padding: 0 !important;
+
+        flex-shrink: 0 !important;
+        position: relative !important;
+        z-index: 1003 !important;
+
+        cursor: pointer !important;
+        border-radius: 12px !important;
+    }
+
+    /* Side Menu */
+    .navbar .nav-menu {
+        display: none;
+
+        position: absolute !important;
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+
+        width: 50vw !important;
+        min-width: 0 !important;
+        max-width: 50vw !important;
+
+        height: auto !important;
+        max-height: 75vh !important;
+        overflow-y: auto !important;
+
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+
+        margin: 0 !important;
+        padding: 18px 12px !important;
+
+        background: #ffffff !important;
+
+        border-radius: 0 0 0 14px !important;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+
+        z-index: 1001 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Menu Open */
+    .navbar .menu-toggle:checked ~ .nav-menu {
+        display: flex !important;
+    }
+
+    /* Navigation Links */
+    .navbar .nav-menu .nav-link {
+        display: block !important;
+        width: 100% !important;
+
+        padding: 12px 8px !important;
+        margin: 0 !important;
+
+        font-size: 13px !important;
+        text-align: left !important;
+
+        box-sizing: border-box !important;
+    }
+
+    /* Navigation Actions */
+    .navbar .nav-actions {
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        width: 100% !important;
+        gap: 9px !important;
+
+        margin: 12px 0 0 !important;
+        padding: 0 !important;
+    }
+
+    .navbar .nav-actions .btn {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 10px 6px !important;
+
+        font-size: 11px !important;
+        text-align: center !important;
+
+        box-sizing: border-box !important;
+    }
+}
