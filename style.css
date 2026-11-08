@@ -5198,3 +5198,228 @@ body {
     }
 
 }
+
+
+/* PREMIUM RED & PINK FLOATING POS */
+
+.floating-pos-container {
+    position: fixed;
+    right: 12px;
+    bottom: 18px;
+
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+}
+
+/* Main Button */
+
+.floating-pos-btn {
+    position: relative;
+
+    width: 68px;
+    height: 68px;
+
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #FF1744,
+        #FF2D87,
+        #D946EF,
+        #FF7043
+    );
+
+    background-size: 250% 250%;
+
+    color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 12px rgba(255,45,135,.5),
+        0 0 28px rgba(217,70,239,.25),
+        inset 0 2px 5px rgba(255,255,255,.3);
+
+    animation: posGradient 5s ease infinite;
+
+    z-index: 5;
+}
+
+.floating-pos-btn i {
+    font-size: 23px;
+}
+
+.floating-pos-btn span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+@keyframes posGradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Professional Thick Circular Waves */
+
+.pos-ripple {
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+
+    border: 4px solid transparent;
+
+    pointer-events: none;
+
+    animation: posRipple 2.8s ease-out infinite;
+}
+
+.ripple-one {
+    border-color: rgba(255, 45, 100, 0.65);
+    animation-delay: 0s;
+}
+
+.ripple-two {
+    border-color: rgba(255, 80, 160, 0.60);
+    animation-delay: .9s;
+}
+
+.ripple-three {
+    border-color: rgba(217, 70, 239, 0.55);
+    animation-delay: 1.8s;
+}
+
+@keyframes posRipple {
+
+    0% {
+        transform: scale(1);
+        opacity: .85;
+        border-width: 4px;
+        box-shadow: 0 0 8px rgba(255, 45, 135, .25);
+    }
+
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+        border-width: 2px;
+        box-shadow: 0 0 15px rgba(217, 70, 239, .15);
+    }
+}
+
+/* POS MENU */
+
+.pos-menu {
+    position: absolute;
+    right: 0;
+    bottom: 82px;
+
+    width: 195px;
+    padding: 8px;
+
+    background: #fff;
+    border: 1px solid #FBCFE8;
+    border-radius: 13px;
+
+    box-shadow: 0 10px 35px rgba(190,24,93,.18);
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+
+    transition: .3s ease;
+}
+
+.pos-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.pos-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    color: #374151;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: .25s;
+}
+
+.pos-menu a i {
+    color: #EC4899;
+}
+
+.pos-menu a:hover {
+    background: #FFF1F7;
+    color: #DB2777;
+    transform: translateX(-3px);
+}
+
+/* LAPTOP & DESKTOP */
+
+@media (min-width: 992px) {
+    .floating-pos-container {
+        right: 12px;
+        bottom: 18px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 576px) {
+    .floating-pos-container {
+        right: 14px;
+        bottom: 20px;
+    }
+
+    .floating-pos-btn {
+        width: 60px;
+        height: 60px;
+    }
+
+    .pos-ripple {
+        width: 60px;
+        height: 60px;
+    }
+
+    .pos-menu {
+        bottom: 72px;
+        width: 180px;
+    }
+}
+
+.floating-pos-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+        0 12px 24px rgba(225, 29, 72, 0.38),
+        0 16px 35px rgba(236, 72, 153, 0.30),
+        inset 0 2px 5px rgba(255, 255, 255, 0.4);
+}

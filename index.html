@@ -628,6 +628,53 @@
     </div>
 </footer>
 
+<!-- Floating POS Button -->
+<div class="floating-pos-container">
+
+    <div class="pos-ripple ripple-one"></div>
+    <div class="pos-ripple ripple-two"></div>
+    <div class="pos-ripple ripple-three"></div>
+
+    <button class="floating-pos-btn" id="floatingPosBtn"
+            onclick="togglePosMenu()">
+
+        <i class="fas fa-shopping-cart"></i>
+        <span>POS</span>
+
+    </button>
+
+    <!-- POS Menu -->
+    <div class="pos-menu" id="posMenu">
+
+        <a href="pos.php">
+            <i class="fas fa-cash-register"></i>
+            New Sale
+        </a>
+
+        <a href="sales-history.php">
+            <i class="fas fa-history"></i>
+            Sales History
+        </a>
+
+        <a href="customers.php">
+            <i class="fas fa-users"></i>
+            Customers
+        </a>
+
+        <a href="sales-return.php">
+            <i class="fas fa-undo"></i>
+            Sales Return
+        </a>
+
+        <a href="sales-reports.php">
+            <i class="fas fa-chart-line"></i>
+            Sales Reports
+        </a>
+
+    </div>
+
+</div>
+
 
     <!-- Existing project scripts -->
     <script src="script.js"></script>

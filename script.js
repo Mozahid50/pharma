@@ -134,3 +134,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+
+function togglePosMenu() {
+    const menu = document.getElementById("posMenu");
+
+    menu.classList.toggle("active");
+}
+
+// Click outside to close POS menu
+
+document.addEventListener("click", function(event) {
+
+    const container = document.querySelector(
+        ".floating-pos-container"
+    );
+
+    const menu = document.getElementById("posMenu");
+
+    if (!container.contains(event.target)) {
+        menu.classList.remove("active");
+    }
+
+});
