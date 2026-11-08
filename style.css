@@ -5062,3 +5062,35 @@ video {
         box-sizing: border-box !important;
     }
 }
+
+/* =====================================
+   PHARMAGUARD PRO - STICKY MOBILE NAVBAR
+===================================== */
+
+@media screen and (max-width: 600px) {
+
+    .site-header {
+        position: sticky !important;
+        position: -webkit-sticky !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+        z-index: 9999 !important;
+
+        background: #edf6f1 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .site-header .navbar {
+        position: relative !important;
+        z-index: 9999 !important;
+    }
+
+    /* Keep navbar visible while scrolling */
+    html {
+        scroll-padding-top: 80px;
+    }
+
+}
